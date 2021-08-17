@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/brigadecore/brigade/v2/v2/apiserver/schemas/project.json
+apiVersion: brigade.sh/v2-beta
+kind: Project
+metadata:
+  id: acr-demo
+description: A project that demonstrates integration with ACR
+spec:
+  eventSubscriptions:
+  - source: brigade.sh/acr
+    types:
+    - push
+    qualifiers:
+      registry: example.azurecr.io
+    qualifiers:
+      repo: example-repo
+  workerTemplate:
+    defaultConfigFiles:
+      brigade.js: |-
+        const { events } = require("@brigadecore/brigadier");
+
+        events.on("brigade.sh/acr", "push", () => {
+          console.log("Someone pushed an image to example.azurecr.io/example-repo!");
+        });
+
+        events.process();
