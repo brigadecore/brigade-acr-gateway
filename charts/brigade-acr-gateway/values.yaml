@@ -114,7 +114,6 @@ brigade:
   ## this gateway, with proper permissions:
   ##
   ## $ brig service-account create --id brigade-acr-gateway --description brigade-acr-gateway
-  ## $ brig role grant READER --service-account brigade-acr-gateway
   ## $ brig role grant EVENT_CREATOR --service-account brigade-acr-gateway --source brigade.sh/acr
   apiToken:
   ## Whether to ignore cert warning from the API server
