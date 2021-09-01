@@ -78,7 +78,7 @@ a file you can modify:
 
 ```console
 $ helm inspect values oci://ghcr.io/brigadecore/brigade-acr-gateway \
-  --version v0.2.0 > ~/brigade-acr-gateway-values.yaml
+  --version v0.2.1 > ~/brigade-acr-gateway-values.yaml
 ```
 
 Edit `~/brigade-acr-gateway-values.yaml`, making the following changes:
@@ -99,7 +99,7 @@ the gateway using the above customizations:
 ```console
 $ helm install brigade-acr-gateway
     oci://ghcr.io/brigadecore/brigade-acr-gateway \
-    --version v0.2.0 \
+    --version v0.2.1 \
     --create-namespace \
     --namespace brigade-acr-gateway \
     --values ~/brigade-acr-gateway-values.yaml
