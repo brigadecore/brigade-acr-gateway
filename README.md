@@ -1,6 +1,7 @@
 # Brigade ACR Gateway
 
 [![codecov](https://codecov.io/gh/brigadecore/brigade-acr-gateway/branch/main/graph/badge.svg?token=9J6ZWN52PI)](https://codecov.io/gh/brigadecore/brigade-acr-gateway)
+[![Go Report Card](https://goreportcard.com/badge/github.com/brigadecore/brigade-acr-gateway)](https://goreportcard.com/report/github.com/brigadecore/brigade-acr-gateway)
 
 This is a work-in-progress
 [Brigade 2](https://github.com/brigadecore/brigade/tree/v2)
