@@ -82,10 +82,13 @@ a file you can modify:
 
 ```console
 $ helm inspect values oci://ghcr.io/brigadecore/brigade-acr-gateway \
-  --version v0.2.1 > ~/brigade-acr-gateway-values.yaml
+    --version v0.2.1 > ~/brigade-acr-gateway-values.yaml
 ```
 
 Edit `~/brigade-acr-gateway-values.yaml`, making the following changes:
+
+* `host`: Set this to the host name where you'd like the gateway to be
+  accessible.
 
 * `brigade.apiAddress`: Address of the Brigade API server, beginning with
   `https://`
@@ -116,8 +119,8 @@ this command should help you find the gateway's public IP address:
 
 ```console
 $ kubectl get svc brigade-acr-gateway \
-  --namespace brigade-acr-gateway \
-  --output jsonpath='{.status.loadBalancer.ingress[0].ip}'
+    --namespace brigade-acr-gateway \
+    --output jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
 
 If you overrode defaults and enabled support for an ingress controller, you
