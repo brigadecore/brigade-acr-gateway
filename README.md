@@ -4,10 +4,14 @@
 [![codecov](https://codecov.io/gh/brigadecore/brigade-acr-gateway/branch/main/graph/badge.svg?token=9J6ZWN52PI)](https://codecov.io/gh/brigadecore/brigade-acr-gateway)
 [![Go Report Card](https://goreportcard.com/badge/github.com/brigadecore/brigade-acr-gateway)](https://goreportcard.com/report/github.com/brigadecore/brigade-acr-gateway)
 
+<img width="100" align="left" src="logo.png">
+
 This is a work-in-progress
 [Brigade 2](https://github.com/brigadecore/brigade/tree/v2)
 compatible gateway that receives events (webhooks) from Azure Container Registry
 and propagates them into Brigade 2's event bus.
+
+<br clear="left"/>
 
 ## Installation
 
