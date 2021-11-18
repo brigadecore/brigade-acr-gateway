@@ -188,7 +188,7 @@ the gateway, provided they've originated from the fictitious
 (see the `registry` qualifier and `repo` label).
 
 ```yaml
-apiVersion: brigade.sh/v2-beta
+apiVersion: brigade.sh/v2
 kind: Project
 metadata:
   id: acr-demo
@@ -217,7 +217,7 @@ spec:
 In the alternative example below, we subscribe _only_ to `push` events:
 
 ```yaml
-apiVersion: brigade.sh/v2-beta
+apiVersion: brigade.sh/v2
 kind: Project
 metadata:
   id: acr-demo
