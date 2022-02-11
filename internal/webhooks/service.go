@@ -3,7 +3,7 @@ package webhooks
 import (
 	"context"
 
-	"github.com/brigadecore/brigade/sdk/v2/core"
+	"github.com/brigadecore/brigade/sdk/v3"
 	"github.com/pkg/errors"
 )
 
@@ -15,12 +15,12 @@ type Service interface {
 }
 
 type service struct {
-	eventsClient core.EventsClient
+	eventsClient sdk.EventsClient
 }
 
 // NewService returns an implementation of the Service interface for handling
 // webhooks (events) from ACR.
-func NewService(eventsClient core.EventsClient) Service {
+func NewService(eventsClient sdk.EventsClient) Service {
 	return &service{
 		eventsClient: eventsClient,
 	}
@@ -41,7 +41,7 @@ func (s *service) Handle(
 			event.Action,
 		)
 	}
-	brigadeEvent := core.Event{
+	brigadeEvent := sdk.Event{
 		Source: "brigade.sh/acr",
 		Type:   event.Action,
 		Qualifiers: map[string]string{
@@ -52,6 +52,6 @@ func (s *service) Handle(
 		},
 		Payload: string(payload),
 	}
-	_, err := s.eventsClient.Create(ctx, brigadeEvent)
+	_, err := s.eventsClient.Create(ctx, brigadeEvent, nil)
 	return errors.Wrap(err, "error emitting event(s) into Brigade")
 }
