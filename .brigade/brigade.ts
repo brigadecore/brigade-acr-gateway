@@ -126,7 +126,7 @@ const buildJob = (event: Event, version?: string) => {
     const keyDir = "~/.docker/trust/private"
     const keyFile = `${keyDir}/${secrets.imageSigningKeyHash}.key`
     signingCommands = `mkdir -p ${keyDir} && chmod 700 ${keyDir} && ` +
-      `printf $BASE64_IMAGE_SIGNING_KEY | base64 -d > ${keyFile} && ` +
+      `printf $BASE64_IMAGE_SIGNING_KEY | base64 -d > ${keyFile} && chmod 600 ${keyFile} && ` +
       `docker trust key load --name ${registryUsername} ${keyFile} && `
   }
   if (registry) {
