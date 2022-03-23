@@ -167,6 +167,11 @@ push:
 		--push \
 		.
 
+.PHONY: sign
+sign:
+	docker trust sign $(DOCKER_IMAGE_NAME):$(IMMUTABLE_DOCKER_TAG)
+	docker trust sign $(DOCKER_IMAGE_NAME):$(MUTABLE_DOCKER_TAG)
+
 .PHONY: publish-chart
 publish-chart:
 	$(HELM_DOCKER_CMD) sh	-c ' \
