@@ -105,6 +105,7 @@ const buildJob = (event: Event, version?: string) => {
   let registryOrg: string
   let registryUsername: string
   let registryPassword: string
+  let signingCommands = ""
   if (!version) { // This is where we'll push potentially unstable images
     registry = secrets.unstableImageRegistry
     registryOrg = secrets.unstableImageRegistryOrg
@@ -117,6 +118,16 @@ const buildJob = (event: Event, version?: string) => {
     registryPassword = secrets.stableImageRegistryPassword
     // Since it's defined, the make target will want this env var
     env["VERSION"] = version
+    env["BASE64_IMAGE_SIGNING_KEY"] = secrets.base64ImageSigningKey
+    // These env vars are documented here:
+    // https://docs.docker.com/engine/security/trust/trust_automation/
+    env["DOCKER_CONTENT_TRUST"] = "1"
+    env["DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE"] = secrets.imageSigningKeyPassphrase
+    const keyDir = "~/.docker/trust/private"
+    const keyFile = `${keyDir}/${secrets.imageSigningKeyHash}.key`
+    signingCommands = `mkdir -p ${keyDir} && chmod 700 ${keyDir} && ` +
+      `printf $BASE64_IMAGE_SIGNING_KEY | base64 -D > ${keyFile} && ` +
+      `docker trust key load --name ${registryUsername} ${keyFile} && `
   }
   if (registry) {
     // Since it's defined, the make target will want this env var
@@ -145,6 +156,7 @@ const buildJob = (event: Event, version?: string) => {
     // probably up and running.
     "sleep 20 && " +
       `${registriesLoginCmd} && ` +
+      signingCommands +
       "docker buildx create --name builder --use && " +
       "docker info && " +
       "make push"
