@@ -120,7 +120,7 @@ const buildJob = (event: Event, version?: string) => {
     // Since it's defined, the make target will want this env var
     env["VERSION"] = version
     env["BASE64_IMAGE_SIGNING_KEY"] = secrets.base64ImageSigningKey
-    // These env vars are documented here:
+    // This env var is documented here:
     // https://docs.docker.com/engine/security/trust/trust_automation/
     env["DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE"] = secrets.imageSigningKeyPassphrase
     const keyDir = "~/.docker/trust/private"
@@ -149,7 +149,7 @@ const buildJob = (event: Event, version?: string) => {
     env["IMAGE_REGISTRY_PASSWORD"] = registryPassword
     registriesLoginCmd = `${registriesLoginCmd} && docker login ${registry} -u ${registryUsername} -p $IMAGE_REGISTRY_PASSWORD`
   }
-  const job = new JobWithSource("build", dockerClientImg, event, env)
+  const job = new JobWithSource(buildJobName, dockerClientImg, event, env)
   job.primaryContainer.command = [ "sh" ]
   job.primaryContainer.arguments = [
     "-c",
