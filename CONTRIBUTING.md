@@ -34,7 +34,7 @@ _before_ running `tilt up`:
 1. Log into Brigade:
 
    ```shell
-   $ brig login -s http://localhost:31600 --root
+   $ brig login -k -s https://localhost:31600 --root
    ```
 
    The root password is `F00Bar!!!`.
