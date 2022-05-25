@@ -1,4 +1,4 @@
-> ⚠️&nbsp;&nbsp;Most Azure resources, including Azure Container Registries can
+> ⚠️&nbsp;&nbsp;Most Azure resources, including Azure Container Registries, can
 > be configured to deliver events to Brigade through the combination of
 > [Azure Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview),
 > which is a CloudEvents 1.0-compliant event producer, and the
