@@ -1,3 +1,12 @@
+> ⚠️&nbsp;&nbsp;Most Azure resources, including Azure Container Registries can
+> be configured to deliver events to Brigade through the combination of
+> [Azure Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview),
+> which is a CloudEvents 1.0-compliant event producer, and the
+> [Brigade CloudEvents Gateway](https://github.com/brigadecore/brigade-cloudevents-gateway).
+>
+> With the CloudEvents Gateway supporting the same use cases as this one -- plus
+> many more -- this gateway has been archived.
+
 # Brigade ACR Gateway
 
 ![build](https://badgr.brigade2.io/v1/github/checks/brigadecore/brigade-acr-gateway/badge.svg?appID=99005)
